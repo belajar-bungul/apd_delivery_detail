@@ -46,7 +46,7 @@ Configurable Portal Status
             'ara_portal_delivery/static/src/xml/color_hex_field.xml',
         ],
     },
-    'images': ['static/description/banner.png'],
+    "images": ['static/description/banner.gif'],
     'price': 42.00,
     'currency': 'USD',
     'installable': True,

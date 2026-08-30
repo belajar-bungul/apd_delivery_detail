@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Portal Delivery Status: list + form -->
+    <record id="view_portal_delivery_status_list" model="ir.ui.view">
+        <field name="name">portal.delivery.status.list</field>
+        <field name="model">portal.delivery.status</field>
+        <field name="arch" type="xml">
+            <list string="Portal Delivery Statuses">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="color" widget="color_hex"/>
+                <field name="requires_reason"/>
+                <field name="active" invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_portal_delivery_status_form" model="ir.ui.view">
+        <field name="name">portal.delivery.status.form</field>
+        <field name="model">portal.delivery.status</field>
+        <field name="arch" type="xml">
+            <form string="Portal Delivery Status">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="sequence"/>
+                        <field name="color" widget="color_hex"/>
+                        <field name="requires_reason"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_portal_delivery_status" model="ir.actions.act_window">
+        <field name="name">Portal Delivery Statuses</field>
+        <field name="res_model">portal.delivery.status</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'active_test': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your own delivery statuses (Ready, Waiting, Picking, Packing,
+                On Delivery, On Hold, Done, ...), each with its own color, shown on
+                the customer portal.
+            </p>
+        </field>
+    </record>
+
+    <!-- Portal Delivery Hold Reason: list + form -->
+    <record id="view_portal_delivery_status_reason_list" model="ir.ui.view">
+        <field name="name">portal.delivery.status.reason.list</field>
+        <field name="model">portal.delivery.status.reason</field>
+        <field name="arch" type="xml">
+            <list string="Portal Delivery Hold Reasons">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="active" invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_portal_delivery_status_reason_form" model="ir.ui.view">
+        <field name="name">portal.delivery.status.reason.form</field>
+        <field name="model">portal.delivery.status.reason</field>
+        <field name="arch" type="xml">
+            <form string="Portal Delivery Hold Reason">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="sequence"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_portal_delivery_status_reason" model="ir.actions.act_window">
+        <field name="name">Portal Delivery Hold Reasons</field>
+        <field name="res_model">portal.delivery.status.reason</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'active_test': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Define the reasons a delivery can be put "on hold" (or any other
+                status flagged "Requires a Reason"). These show up to the customer
+                on the portal.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu: Inventory > Configuration > Portal Delivery -->
+    <menuitem id="menu_portal_delivery_status"
+              name="Portal Delivery Statuses"
+              parent="stock.menu_stock_config_settings"
+              action="action_portal_delivery_status"
+              groups="stock.group_stock_manager"
+              sequence="60"/>
+
+    <menuitem id="menu_portal_delivery_status_reason"
+              name="Portal Delivery Hold Reasons"
+              parent="stock.menu_stock_config_settings"
+              action="action_portal_delivery_status_reason"
+              groups="stock.group_stock_manager"
+              sequence="61"/>
+
+</odoo>

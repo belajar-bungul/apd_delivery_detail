@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_picking_portal,stock.picking.portal,stock.model_stock_picking,base.group_portal,1,0,0,0
+access_stock_picking_type_portal,stock.picking.type.portal,stock.model_stock_picking_type,base.group_portal,1,0,0,0
+access_stock_move_portal,stock.move.portal,stock.model_stock_move,base.group_portal,1,0,0,0
+access_stock_move_line_portal,stock.move.line.portal,stock.model_stock_move_line,base.group_portal,1,0,0,0
+access_product_product_portal_delivery,product.product.portal.delivery,product.model_product_product,base.group_portal,1,0,0,0
+access_product_template_portal_delivery,product.template.portal.delivery,product.model_product_template,base.group_portal,1,0,0,0
+access_uom_uom_portal_delivery,uom.uom.portal.delivery,uom.model_uom_uom,base.group_portal,1,0,0,0
+access_portal_delivery_status_user,portal.delivery.status.user,model_portal_delivery_status,base.group_user,1,0,0,0
+access_portal_delivery_status_stock_manager,portal.delivery.status.stock_manager,model_portal_delivery_status,stock.group_stock_manager,1,1,1,1
+access_portal_delivery_status_portal,portal.delivery.status.portal,model_portal_delivery_status,base.group_portal,1,0,0,0
+access_portal_delivery_status_reason_user,portal.delivery.status.reason.user,model_portal_delivery_status_reason,base.group_user,1,0,0,0
+access_portal_delivery_status_reason_stock_manager,portal.delivery.status.reason.stock_manager,model_portal_delivery_status_reason,stock.group_stock_manager,1,1,1,1
+access_portal_delivery_status_reason_portal,portal.delivery.status.reason.portal,model_portal_delivery_status_reason,base.group_portal,1,0,0,0

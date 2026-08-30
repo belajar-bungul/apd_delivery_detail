@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_portal_delivery" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.portal.delivery</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="Portal Delivery" name="portal_delivery" groups="stock.group_stock_manager">
+
+                    <block title="Customer Portal" name="portal_delivery_customer_portal">
+                        <setting id="portal_delivery_hide_log_setting"
+                                 string="Hide Delivery Log from Customers"
+                                 help="Hide delivery photos, signed proof of delivery and other attachments from customers on the delivery detail page. Shown by default.">
+                            <field name="portal_delivery_hide_log"/>
+                        </setting>
+                    </block>
+
+                    <block title="Master Data" name="portal_delivery_master_data">
+                        <setting id="portal_delivery_status_setting"
+                                 string="Delivery Statuses"
+                                 help="Add, rename, reorder and recolor the statuses shown to customers (Ready, Waiting, Picking, Packing, On Delivery, On Hold, Done, or your own).">
+                            <button name="%(action_portal_delivery_status)d"
+                                    icon="fa-arrow-right" type="action"
+                                    string="Delivery Statuses" class="btn-link"/>
+                        </setting>
+                        <setting id="portal_delivery_status_reason_setting"
+                                 string="Hold Reasons"
+                                 help="Manage the reasons a delivery can be put on a status that &quot;requires a reason&quot; (e.g. On Hold).">
+                            <button name="%(action_portal_delivery_status_reason)d"
+                                    icon="fa-arrow-right" type="action"
+                                    string="Hold Reasons" class="btn-link"/>
+                        </setting>
+                    </block>
+
+                    <block title="Automatic Status Mapping" name="portal_delivery_status_mapping">
+                        <div class="text-muted mb-2" style="max-width:680px;">
+                            Whenever a delivery's internal Odoo status changes, its Portal Status
+                            is automatically switched to whatever you pick below. Leave a line
+                            empty to never auto-touch the Portal Status for that internal status -
+                            useful if you'd rather set it by hand for that stage. You can always
+                            override the Portal Status manually on a specific delivery afterwards.
+                        </div>
+                        <group>
+                            <field name="portal_delivery_status_map_draft_id" string="Draft" options="{'no_create': True}"/>
+                            <field name="portal_delivery_status_map_waiting_id" string="Waiting Another Move" options="{'no_create': True}"/>
+                            <field name="portal_delivery_status_map_confirmed_id" string="Waiting" options="{'no_create': True}"/>
+                            <field name="portal_delivery_status_map_assigned_id" string="Ready" options="{'no_create': True}"/>
+                            <field name="portal_delivery_status_map_done_id" string="Done" options="{'no_create': True}"/>
+                            <field name="portal_delivery_status_map_cancel_id" string="Cancelled" options="{'no_create': True}"/>
+                        </group>
+                    </block>
+
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

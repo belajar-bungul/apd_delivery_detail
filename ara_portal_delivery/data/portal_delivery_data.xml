@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="portal_delivery_status_ready" model="portal.delivery.status">
+        <field name="name">Ready</field>
+        <field name="sequence">10</field>
+        <field name="color">#17A2B8</field>
+    </record>
+    <record id="portal_delivery_status_waiting" model="portal.delivery.status">
+        <field name="name">Waiting</field>
+        <field name="sequence">20</field>
+        <field name="color">#FFC107</field>
+    </record>
+    <record id="portal_delivery_status_picking" model="portal.delivery.status">
+        <field name="name">Picking</field>
+        <field name="sequence">30</field>
+        <field name="color">#6C757D</field>
+    </record>
+    <record id="portal_delivery_status_packing" model="portal.delivery.status">
+        <field name="name">Packing</field>
+        <field name="sequence">40</field>
+        <field name="color">#6F42C1</field>
+    </record>
+    <record id="portal_delivery_status_on_delivery" model="portal.delivery.status">
+        <field name="name">On Delivery</field>
+        <field name="sequence">50</field>
+        <field name="color">#0D6EFD</field>
+    </record>
+    <record id="portal_delivery_status_on_hold" model="portal.delivery.status">
+        <field name="name">On Hold</field>
+        <field name="sequence">60</field>
+        <field name="color">#DC3545</field>
+        <field name="requires_reason">True</field>
+    </record>
+    <record id="portal_delivery_status_done" model="portal.delivery.status">
+        <field name="name">Done</field>
+        <field name="sequence">70</field>
+        <field name="color">#28A745</field>
+    </record>
+    <record id="portal_delivery_status_cancelled" model="portal.delivery.status">
+        <field name="name">Cancelled</field>
+        <field name="sequence">80</field>
+        <field name="color">#B02A37</field>
+    </record>
+
+    <!-- Sensible out-of-the-box mapping from the technical Odoo status to a
+         Portal Status, editable at Settings > Portal Delivery > Automatic
+         Status Mapping. Applied to the main company only; multi-company
+         setups can configure each company independently from Settings. -->
+    <record id="base.main_company" model="res.company">
+        <field name="portal_delivery_status_map_waiting_id" ref="portal_delivery_status_waiting"/>
+        <field name="portal_delivery_status_map_confirmed_id" ref="portal_delivery_status_waiting"/>
+        <field name="portal_delivery_status_map_assigned_id" ref="portal_delivery_status_ready"/>
+        <field name="portal_delivery_status_map_done_id" ref="portal_delivery_status_done"/>
+        <field name="portal_delivery_status_map_cancel_id" ref="portal_delivery_status_cancelled"/>
+    </record>
+
+    <record id="portal_delivery_reason_stock" model="portal.delivery.status.reason">
+        <field name="name">Waiting for stock</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="portal_delivery_reason_payment" model="portal.delivery.status.reason">
+        <field name="name">Pending payment</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="portal_delivery_reason_address" model="portal.delivery.status.reason">
+        <field name="name">Address verification needed</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="portal_delivery_reason_carrier" model="portal.delivery.status.reason">
+        <field name="name">Carrier delay</field>
+        <field name="sequence">40</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="portal_delivery.ColorHexField">
+        <div class="d-flex align-items-center gap-2">
+            <input type="color"
+                   class="o_color_hex_picker"
+                   style="width: 32px; height: 28px; padding: 0; border: 1px solid #ccc; border-radius: 4px;"
+                   t-att-value="value"
+                   t-on-input="onColorInput"/>
+            <input type="text"
+                   class="o_input"
+                   style="max-width: 110px;"
+                   t-att-value="value"
+                   t-on-change="onTextInput"/>
+        </div>
+    </t>
+</templates>

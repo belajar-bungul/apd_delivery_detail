@@ -1,0 +1,120 @@
+<div style="font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 1140px; margin: 0 auto; padding: 0 20px; box-sizing: border-box; color: #495057;">
+
+  <!-- HERO BANNER -->
+  <div style="background-color: #714B67; background: linear-gradient(135deg, #714B67 0%, #4a3043 100%); border-radius: 20px; color: #ffffff; box-shadow: 0 15px 35px rgba(113, 75, 103, 0.2); margin: 24px auto 40px auto; max-width: 1140px; padding: 56px 32px; text-align: center;">
+    <h1 style="font-size: 2.4rem; font-weight: 800; margin: 0 0 16px 0; color: #ffffff !important;">Portal Delivery Orders</h1>
+    <p style="font-size: 1.05rem; color: #ffffff !important; max-width: 640px; margin: 0 auto; line-height: 1.5; opacity: 0.95;">Give customers real-time, read-only visibility into their deliveries &mdash; right from their Odoo portal account.</p>
+  </div>
+
+  <!-- THE PROBLEM -->
+  <h3 style="font-size: 1.1rem; font-weight: 800; color: #212529; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 12px 4px;">The Problem</h3>
+  <div style="border: 2px solid #212529; border-radius: 18px; background: #ffffff; padding: 36px 32px 28px 32px; margin: 0 auto 40px auto; max-width: 1140px; box-sizing: border-box;">
+    <ul style="margin: 0; padding-left: 0; list-style: none;">
+      <li style="position: relative; margin-bottom: 12px; padding-left: 18px; line-height: 1.5;"><span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: #714B67;"></span>Customers repeatedly call or email asking "where is my delivery?" because Odoo's portal doesn't expose delivery status by default.</li>
+      <li style="position: relative; margin-bottom: 12px; padding-left: 18px; line-height: 1.5;"><span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: #714B67;"></span>Giving customers full portal access to stock data risks exposing internal information &mdash; or worse, write access to operations they shouldn't touch.</li>
+      <li style="position: relative; margin-bottom: 12px; padding-left: 18px; line-height: 1.5;"><span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: #714B67;"></span>Odoo's default picking states (Ready, Waiting, Done...) don't match the internal vocabulary many warehouses actually use.</li>
+    </ul>
+  </div>
+
+  <!-- THE SOLUTION -->
+  <h3 style="font-size: 1.1rem; font-weight: 800; color: #212529; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 12px 4px;">The Solution</h3>
+  <div style="border: 2px solid #212529; border-radius: 18px; background: #ffffff; padding: 36px 32px 28px 32px; margin: 0 auto 40px auto; max-width: 1140px; box-sizing: border-box;">
+    <ul style="margin: 0; padding-left: 0; list-style: none;">
+      <li style="position: relative; margin-bottom: 12px; padding-left: 18px; line-height: 1.5;"><span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: #714B67;"></span>Adds a strictly read-only "Delivery Orders" section to the customer portal, scoped to the logged-in partner and their child contacts.</li>
+      <li style="position: relative; margin-bottom: 12px; padding-left: 18px; line-height: 1.5;"><span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: #714B67;"></span>Lets you define your own status list &mdash; names, colors, and order &mdash; instead of showing Odoo's raw picking states.</li>
+      <li style="position: relative; margin-bottom: 12px; padding-left: 18px; line-height: 1.5;"><span style="position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: #714B67;"></span>Automatically surfaces a configurable "reason" whenever a delivery carries a status flagged as needing one (e.g. "On Hold").</li>
+    </ul>
+  </div>
+
+  <!-- FEATURES -->
+  <h3 style="font-size: 1.1rem; font-weight: 800; color: #212529; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 12px 4px;">Features</h3>
+  <div style="border: 2px solid #212529; border-radius: 18px; background: #ffffff; padding: 36px 32px 24px 32px; margin: 0 auto 40px auto; max-width: 1140px; box-sizing: border-box;">
+    <table style="width: 100%; border-collapse: collapse;">
+      <tr>
+        <td style="width: 50%; padding-right: 20px; padding-bottom: 30px; vertical-align: top;">
+          <h5 style="font-size: 1rem; font-weight: 800; color: #2c3e50; display: inline-block; border-bottom: 3px solid #714B67; padding-bottom: 4px; margin: 0 0 8px 0;">Scoped Delivery List</h5>
+          <p style="font-size: 0.9rem; color: #6c757d; margin: 0; line-height: 1.5;">Shows only outgoing deliveries for the logged-in partner and its child contacts. No cross-customer data leakage.</p>
+        </td>
+        <td style="width: 50%; padding-left: 20px; padding-bottom: 30px; vertical-align: top;">
+          <h5 style="font-size: 1rem; font-weight: 800; color: #2c3e50; display: inline-block; border-bottom: 3px solid #714B67; padding-bottom: 4px; margin: 0 0 8px 0;">Search by DO or SO</h5>
+          <p style="font-size: 0.9rem; color: #6c757d; margin: 0; line-height: 1.5;">Customers can filter their list directly by Delivery Order number or Sales Order reference.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 50%; padding-right: 20px; padding-bottom: 30px; vertical-align: top;">
+          <h5 style="font-size: 1rem; font-weight: 800; color: #2c3e50; display: inline-block; border-bottom: 3px solid #714B67; padding-bottom: 4px; margin: 0 0 8px 0;">Strictly Read-Only</h5>
+          <p style="font-size: 0.9rem; color: #6c757d; margin: 0; line-height: 1.5;">View status, product lines, and optionally the chatter log. No edit access, no stock operations.</p>
+        </td>
+        <td style="width: 50%; padding-left: 20px; padding-bottom: 30px; vertical-align: top;">
+          <h5 style="font-size: 1rem; font-weight: 800; color: #2c3e50; display: inline-block; border-bottom: 3px solid #714B67; padding-bottom: 4px; margin: 0 0 8px 0;">Configurable Statuses</h5>
+          <p style="font-size: 0.9rem; color: #6c757d; margin: 0; line-height: 1.5;">Build your own status list &mdash; name, color, and order &mdash; instead of Odoo's default picking states.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 50%; padding-right: 20px; padding-bottom: 10px; vertical-align: top;">
+          <h5 style="font-size: 1rem; font-weight: 800; color: #2c3e50; display: inline-block; border-bottom: 3px solid #714B67; padding-bottom: 4px; margin: 0 0 8px 0;">Status Reasons</h5>
+          <p style="font-size: 0.9rem; color: #6c757d; margin: 0; line-height: 1.5;">Flag any status to require a reason, shown automatically to the customer when that status is active.</p>
+        </td>
+        <td style="width: 50%; padding-left: 20px; padding-bottom: 10px; vertical-align: top;">
+          <h5 style="font-size: 1rem; font-weight: 800; color: #2c3e50; display: inline-block; border-bottom: 3px solid #714B67; padding-bottom: 4px; margin: 0 0 8px 0;">Settings, Not Code</h5>
+          <p style="font-size: 0.9rem; color: #6c757d; margin: 0; line-height: 1.5;">Toggle statuses, reasons, and portal visibility from Settings &gt; Portal Delivery &mdash; no development needed.</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- WORKFLOW DEMO -->
+  <div style="background-color: #f8f9fa; border-radius: 16px; padding: 48px 20px; margin-bottom: 40px; box-sizing: border-box;">
+    <div style="text-align: center; font-weight: 800; color: #2c3e50; font-size: 1.4rem; margin-bottom: 32px;">See The Workflow In Action</div>
+
+    <div style="background: #ffffff; border-radius: 12px; padding: 30px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06); border: 1px solid #f1f3f5; text-align: center; max-width: 900px; margin: 0 auto 32px auto; box-sizing: border-box;">
+      <h4 style="font-weight: 800; color: #2c3e50; margin-bottom: 6px; font-size: 1.1rem;">1. Customer Portal Dashboard</h4>
+      <p style="color: #6c757d; margin-bottom: 20px; font-size: 0.9rem;">A clean, filtered list of deliveries available directly on the customer's portal.</p>
+      <img src="portal_delivery_list.png" style="border-radius: 6px; border: 1px solid #dee2e6; width: 100%; max-width: 900px; display: block; margin: 0 auto 16px auto; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" alt="Portal delivery list view"/>
+      <img src="portal_delivery_detail.png" style="border-radius: 6px; border: 1px solid #dee2e6; width: 100%; max-width: 900px; display: block; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" alt="Portal delivery detail view"/>
+    </div>
+
+    <div style="background: #ffffff; border-radius: 12px; padding: 30px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06); border: 1px solid #f1f3f5; text-align: center; max-width: 900px; margin: 0 auto 32px auto; box-sizing: border-box;">
+      <h4 style="font-weight: 800; color: #2c3e50; margin-bottom: 6px; font-size: 1.1rem;">2. Detailed Read-Only View</h4>
+      <p style="color: #6c757d; margin-bottom: 20px; font-size: 0.9rem;">Clicking into a delivery shows exact status, items, and references.</p>
+      <img src="portal_delivery_form.png" style="border-radius: 6px; border: 1px solid #dee2e6; width: 100%; max-width: 900px; display: block; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" alt="Portal delivery form view"/>
+    </div>
+
+    <div style="background: #ffffff; border-radius: 12px; padding: 30px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06); border: 1px solid #f1f3f5; text-align: center; max-width: 900px; margin: 0 auto 32px auto; box-sizing: border-box;">
+      <h4 style="font-weight: 800; color: #2c3e50; margin-bottom: 6px; font-size: 1.1rem;">3. Automatic Status Reasons</h4>
+      <p style="color: #6c757d; margin-bottom: 20px; font-size: 0.9rem;">When a status is flagged as needing one, the reason displays automatically to the customer.</p>
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <td style="width: 50%; padding-right: 8px; vertical-align: top;">
+            <img src="portal_delivery_form1.png" style="border-radius: 6px; border: 1px solid #dee2e6; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: block;" alt="Portal delivery reason example 1"/>
+          </td>
+          <td style="width: 50%; padding-left: 8px; vertical-align: top;">
+            <img src="portal_delivery_form2.png" style="border-radius: 6px; border: 1px solid #dee2e6; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: block;" alt="Portal delivery reason example 2"/>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div style="background: #ffffff; border-radius: 12px; padding: 30px; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06); border: 1px solid #f1f3f5; text-align: center; max-width: 900px; margin: 0 auto; box-sizing: border-box;">
+      <h4 style="font-weight: 800; color: #2c3e50; margin-bottom: 6px; font-size: 1.1rem;">4. Simple Backend Configuration</h4>
+      <p style="color: #6c757d; margin-bottom: 20px; font-size: 0.9rem;">Build custom statuses and reasons from Settings &mdash; no code required.</p>
+      <img src="portal_delivery_settings.png" style="border-radius: 6px; border: 1px solid #dee2e6; width: 100%; max-width: 900px; display: block; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.06);" alt="Backend settings for portal statuses"/>
+    </div>
+  </div>
+
+  <!-- GOOD FIT -->
+  <div style="text-align: center; font-weight: 800; color: #2c3e50; margin-bottom: 24px; font-size: 1.2rem;">Good fit if...</div>
+  <ul style="max-width: 760px; margin: 0 auto 40px auto; padding: 0; list-style: none;">
+    <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; font-size: 0.95rem; line-height: 1.5;"><span style="color: #28a745; font-weight: 800; flex-shrink: 0;">&#10003;</span><span>You field repeated "where is my delivery?" support requests that a self-service view would resolve.</span></li>
+    <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; font-size: 0.95rem; line-height: 1.5;"><span style="color: #28a745; font-weight: 800; flex-shrink: 0;">&#10003;</span><span>You use internal statuses (e.g. "Awaiting Customs", "Packed") and want customers to see that exact language.</span></li>
+    <li style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; font-size: 0.95rem; line-height: 1.5;"><span style="color: #28a745; font-weight: 800; flex-shrink: 0;">&#10003;</span><span>You want portal delivery visibility without granting any ability to alter stock data.</span></li>
+  </ul>
+
+  <!-- CTA -->
+  <div style="background-color: #714B67; border-radius: 16px; padding: 48px 20px; text-align: center; margin-bottom: 24px; box-sizing: border-box;">
+    <h2 style="color: #ffffff !important; font-weight: 800; margin: 0 0 10px 0; font-size: 1.5rem;">Questions Before You Buy?</h2>
+    <p style="color: #ffffff !important; margin: 0 0 22px 0; opacity: 0.95;">We're happy to walk through setup or confirm it fits your delivery workflow.<br><br>Email us directly at: <strong>gou.wujunhao@gmail.com</strong></p>
+    <a href="mailto:gou.wujunhao@gmail.com" style="display: inline-block; background-color: #ffffff !important; color: #212529 !important; font-weight: 800; padding: 12px 28px; border-radius: 8px; text-decoration: none;">Contact Support</a>
+  </div>
+
+</div>

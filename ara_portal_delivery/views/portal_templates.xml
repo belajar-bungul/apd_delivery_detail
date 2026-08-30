@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================ -->
+    <!-- Breadcrumb entries                                            -->
+    <!-- ============================================================ -->
+    <template id="portal_my_home_menu_delivery" name="Portal layout: delivery menu entries"
+              inherit_id="portal.portal_breadcrumbs" priority="30">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'delivery'" t-attf-class="breadcrumb-item #{'active' if not delivery else ''}">
+                <a t-if="delivery" t-attf-href="/my/deliveries?{{ keep_query() }}">Delivery Orders</a>
+                <t t-else="">Delivery Orders</t>
+            </li>
+            <li t-if="delivery" class="breadcrumb-item active">
+                <t t-out="delivery.name"/>
+            </li>
+        </xpath>
+    </template>
+
+    <!-- ============================================================ -->
+    <!-- Card on /my/home ("My Account")                              -->
+    <!-- ============================================================ -->
+    <template id="portal_my_home_delivery" name="Show Delivery Orders" customize_show="True"
+              inherit_id="portal.portal_my_home" priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_client_category_enable" t-value="True"/>
+        </xpath>
+        <div id="portal_client_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="icon" t-value="'/portal_delivery/static/src/img/delivery-truck.svg'"/>
+                <t t-set="title">Delivery Orders</t>
+                <t t-set="text">Track the status of your deliveries</t>
+                <t t-set="url" t-value="'/my/deliveries'"/>
+                <t t-set="placeholder_count" t-value="'delivery_count'"/>
+            </t>
+        </div>
+    </template>
+
+    <!-- ============================================================ -->
+    <!-- Shared: colored status badge                                  -->
+    <!-- Falls back to the old technical-state badge for any picking   -->
+    <!-- that has not (yet) been given a Portal Status.                -->
+    <!-- ============================================================ -->
+    <template id="portal_delivery_status_badge" name="Portal Delivery: status badge">
+        <t t-if="delivery.portal_status_id">
+            <span t-attf-style="display:inline-block !important; padding:.35em .9em !important; border-radius:50rem !important; font-weight:600 !important; font-size:0.85rem !important; line-height:1 !important; white-space:nowrap !important; background-color:#{delivery.portal_status_id.color or '#875A7B'} !important; color:#fff !important;">
+                <t t-out="delivery.portal_status_id.name"/>
+            </span>
+        </t>
+        <t t-else="">
+            <t t-set="delivery_badge_color" t-value="{'draft': '#6c757d', 'waiting': '#ffc107', 'confirmed': '#ffc107', 'assigned': '#0dcaf0', 'done': '#198754', 'cancel': '#dc3545'}.get(delivery.state, '#6c757d')"/>
+            <span t-attf-style="display:inline-block !important; padding:.35em .9em !important; border-radius:50rem !important; font-weight:600 !important; font-size:0.85rem !important; line-height:1 !important; white-space:nowrap !important; background-color:#{delivery_badge_color} !important; color:#fff !important;">
+                <span t-field="delivery.state"/>
+            </span>
+        </t>
+    </template>
+
+    <!-- ============================================================ -->
+    <!-- List page: /my/deliveries                                    -->
+    <!-- ============================================================ -->
+    <template id="portal_my_deliveries" name="My Deliveries">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Delivery Orders</t>
+            </t>
+
+            <t t-if="not deliveries">
+                <div class="alert alert-warning mt-3" role="alert">
+                    There are currently no delivery orders for your account.
+                </div>
+            </t>
+
+            <t t-if="deliveries" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Delivery Reference</th>
+                        <th>Sales Order</th>
+                        <th>Scheduled Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="deliveries" t-as="delivery">
+                        <td>
+                            <a t-attf-href="/my/deliveries/#{delivery.id}">
+                                <span t-out="delivery.name"/>
+                            </a>
+                        </td>
+                        <td>
+                            <span t-if="delivery.sale_id" t-field="delivery.sale_id.name"/>
+                            <span t-elif="delivery.origin" t-esc="delivery.origin"/>
+                            <span t-else="">-</span>
+                        </td>
+                        <td>
+                            <span t-if="delivery.scheduled_date" t-field="delivery.scheduled_date"/>
+                            <span t-else="">-</span>
+                        </td>
+                        <td>
+                            <t t-call="portal_delivery.portal_delivery_status_badge"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </t>
+
+            <t t-if="pager" t-call="portal.pager"/>
+        </t>
+    </template>
+
+    <!-- ============================================================ -->
+    <!-- Detail page: /my/deliveries/&lt;id&gt;  (read-only)                -->
+    <!-- ============================================================ -->
+    <template id="portal_delivery_page" name="Delivery Order">
+        <t t-call="portal.portal_layout">
+            <t t-set="additional_title" t-value="delivery.name"/>
+
+            <div class="o_portal_delivery_sidebar">
+                <div class="row o_portal_delivery_content">
+                    <div class="col-lg-12">
+
+                        <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+                            <h3 class="mb-0">
+                                Delivery <span t-out="delivery.name"/>
+                            </h3>
+                            <t t-call="portal_delivery.portal_delivery_status_badge"/>
+                        </div>
+
+                        <!-- On-hold (or any "requires a reason") notice, right below the header -->
+                        <t t-if="delivery.portal_status_id and delivery.portal_status_id.requires_reason">
+                            <div class="alert alert-warning d-flex align-items-start gap-2 mb-4" role="alert">
+                                <i class="fa fa-exclamation-triangle mt-1"/>
+                                <div>
+                                    <strong>
+                                        <span t-out="delivery.portal_status_id.name"/>
+                                    </strong>
+                                    <t t-if="delivery.portal_hold_reason_id">
+                                        <span> - </span>
+                                        <span t-out="delivery.portal_hold_reason_id.name"/>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="text-muted small">No reason has been specified yet.</div>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+
+                        <div id="portal_delivery_content">
+                            <div class="row mb-4">
+                                <div class="col-6 col-md-3">
+                                    <strong>Sales Order</strong>
+                                    <div>
+                                        <span t-if="delivery.sale_id" t-field="delivery.sale_id.name"/>
+                                        <span t-elif="delivery.origin" t-esc="delivery.origin"/>
+                                        <span t-else="">-</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <strong>Scheduled Date</strong>
+                                    <div>
+                                        <span t-if="delivery.scheduled_date" t-field="delivery.scheduled_date"/>
+                                        <span t-else="">-</span>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <strong>Delivery Address</strong>
+                                    <div t-field="delivery.partner_id"
+                                         t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <strong>Source Document</strong>
+                                    <div>
+                                        <span t-esc="delivery.origin or '-'"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5>Products</h5>
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr class="active border-bottom">
+                                        <th>Product</th>
+                                        <th class="text-end">Demand</th>
+                                        <th class="text-end">Done</th>
+                                        <th>Unit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="delivery.move_ids" t-as="move">
+                                        <td>
+                                            <span t-out="move.product_id.display_name"/>
+                                            <div class="text-muted small" t-if="move.description_picking and move.description_picking != move.product_id.display_name">
+                                                <span t-esc="move.description_picking"/>
+                                            </div>
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-esc="'%.2f' % move.product_uom_qty"/>
+                                        </td>
+                                        <td class="text-end">
+                                            <span t-esc="'%.2f' % move.quantity"/>
+                                        </td>
+                                        <td>
+                                            <span t-out="move.product_uom.name"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Delivery Log: fully hideable via Settings > Portal Delivery -->
+                        <t t-if="show_delivery_log">
+                            <hr/>
+                            <h5>Delivery Log</h5>
+
+                            <t t-if="delivery_attachments">
+                                <div class="d-flex flex-wrap gap-3">
+                                    <t t-foreach="delivery_attachments" t-as="attachment">
+                                        <t t-set="is_image" t-value="attachment.mimetype and attachment.mimetype.startswith('image/')"/>
+                                        <a t-attf-href="/my/deliveries/#{delivery.id}/attachment/#{attachment.id}?download=1"
+                                           target="_blank" class="text-decoration-none text-body">
+                                            <t t-if="is_image">
+                                                <img t-attf-src="/my/deliveries/#{delivery.id}/attachment/#{attachment.id}?width=128&amp;height=128"
+                                                     class="rounded border o_portal_delivery_thumb"
+                                                     style="width:96px;height:96px;object-fit:cover;"
+                                                     t-att-alt="attachment.name"/>
+                                            </t>
+                                            <t t-else="">
+                                                <div class="border rounded d-flex flex-column align-items-center justify-content-center"
+                                                     style="width:96px;height:96px;">
+                                                    <i class="fa fa-file-text-o fa-2x text-muted"/>
+                                                </div>
+                                            </t>
+                                            <div class="small text-truncate mt-1" style="max-width:96px;" t-out="attachment.name"/>
+                                        </a>
+                                    </t>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <p class="text-muted">No photos or documents have been attached to this delivery yet.</p>
+                            </t>
+                        </t>
+
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

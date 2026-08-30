@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_form_portal_delivery" model="ir.ui.view">
+        <field name="name">stock.picking.form.portal.delivery</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Portal" name="portal_delivery">
+                    <group>
+                        <field name="portal_status_id" options="{'no_create': True}"/>
+                        <field name="portal_hold_reason_id" options="{'no_create': True}"
+                               invisible="not portal_status_requires_reason"/>
+                        <field name="portal_status_requires_reason" invisible="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
